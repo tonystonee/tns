@@ -11,7 +11,9 @@ export default {
 
   }),
   mounted() {
-    alert('sdfsdf')
+    if (this.$store.state.code_verifier) {
+      console.log('verifier avalible');
+    }
   },
 };
 </script>
