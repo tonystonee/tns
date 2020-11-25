@@ -1,7 +1,6 @@
 <template>
   <v-app>
-    <action-bar>
-    </action-bar>
+    <action-bar> </action-bar>
 
     <v-main>
       <HelloWorld />

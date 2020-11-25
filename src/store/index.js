@@ -4,7 +4,10 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    access_token: "",
+    refresh_token: ""
+  },
   mutations: {},
   actions: {},
   modules: {}
