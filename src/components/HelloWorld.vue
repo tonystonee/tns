@@ -19,7 +19,7 @@
       <v-card v-if="access_token">
           <p>Access Token: {{access_token}}</p>
           <p>Refresh Token: {{this.refresh_token}}</p>
-          <v-btn :href= refresh_uri class="green">
+          <v-btn @click="refreshAccessToken" class="green">
             Refresh Access Token 
           </v-btn>
       </v-card>
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { mapGetters } from 'vuex';
 export default {
   name: "HelloWorld",
@@ -84,6 +85,22 @@ export default {
         this.$store.state.access_token, this.$store.state.refresh_token = '';
         this.$_checkParams();
       }
+    },
+    async refreshAccessToken() {
+      let pkg;
+      try {
+        pkg = await axios.get(this.refresh_uri, {
+          params: {
+            refresh_token: this.refresh_token
+          }
+        });
+      } catch(xhr) {
+        this.error = xhr;
+        return;
+      }
+      const access_token = pkg.data.access_token;
+      console.log(access_token)
+      this.$store.dispatch('setAccessToken', access_token);
     },
   },
   mounted() {

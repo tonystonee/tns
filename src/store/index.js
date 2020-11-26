@@ -20,7 +20,15 @@ export default new Vuex.Store({
       return state.refresh_token;
     }
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    setAccessToken (state, token) {
+      state.access_token = token;
+    }
+  },
+  actions: {
+    setAccessToken (context, token) {
+      context.commit('setAccessToken', token);
+    }
+  },
   modules: {}
 });
