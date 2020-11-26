@@ -99,7 +99,6 @@ export default {
         return;
       }
       const access_token = pkg.data.access_token;
-      console.log(access_token)
       this.$store.dispatch('setAccessToken', access_token);
     },
   },
