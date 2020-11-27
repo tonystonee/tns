@@ -10,7 +10,7 @@
         raised
         x-large
         rounded
-        class="my-5 green"
+        class="purple my-5 white--text"
         :href = login_uri
       >
         Sign in with Spotify
@@ -20,24 +20,28 @@
         <v-card
           elevation="2"
           outlined
-          class="pa-2 pink lighten-5 my-5"
+          class="pa-2 pink lighten-5 my-5 rounded-lg"
         >
           <v-card-title class="headline">
             Access Token
           </v-card-title>
-          <v-card-text>{{this.access_token}} </v-card-text>
+          <v-sheet light>
+            <v-card-text class="subtitle-2">{{this.access_token}} </v-card-text>
+          </v-sheet>
         </v-card>
         <v-card
           elevation="2"
           outlined
-          class="pa-2 cyan lighten-5 my-5 "
+          class="pa-2 cyan lighten-5 my-5 rounded-lg"
         >
           <v-card-title class="headline">
             Refresh Token
           </v-card-title>
-          <v-card-text class="v-card-text">{{this.refresh_token}}</v-card-text>
+          <v-sheet light>
+            <v-card-text class="v-card-text subtitle-2">{{this.refresh_token}}</v-card-text>
+          </v-sheet>
       </v-card>
-      <v-btn @click="refreshAccessToken" class="green my-3">
+      <v-btn @click="refreshAccessToken" class="pink accent-2 white--text">
         Refresh Access Token 
       </v-btn>
     </div>

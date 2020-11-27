@@ -1,9 +1,11 @@
 <template>
-  <v-app-bar app dark class="actionBar">
+  <v-app-bar app dark class="actionBar pink accent-2 white--text">
+    <div class="top">
+    </div>
     <div class="d-flex align-center">
-      <h1>
-        <router-link :to="{ name: 'home'}">Thots and Shots</router-link>
-      </h1>
+      <router-link :to="{ name: 'home'}">
+        <h1>Thots and Shots</h1>
+      </router-link>
     </div>
 
     <v-spacer></v-spacer>
@@ -25,3 +27,11 @@ export default {
   data: () => ({})
 };
 </script>
+
+<style>
+
+.v-application a {
+    color: white!important;
+    text-decoration: none;
+}
+</style>
