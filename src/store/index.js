@@ -23,11 +23,17 @@ export default new Vuex.Store({
   mutations: {
     setAccessToken (state, token) {
       state.access_token = token;
+    },
+    setRefreshToken (state, token) {
+      state.refresh_token = token;
     }
   },
   actions: {
     setAccessToken (context, token) {
       context.commit('setAccessToken', token);
+    },
+    setRefreshToken (context, token) {
+      context.commit('setRefreshToken', token);
     }
   },
   modules: {}

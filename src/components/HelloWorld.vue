@@ -16,14 +16,31 @@
         Sign in with Spotify
       </v-btn>
 
-      <v-card v-if="access_token">
-          <p>Access Token: {{access_token}}</p>
-          <p>Refresh Token: {{this.refresh_token}}</p>
-          <v-btn @click="refreshAccessToken" class="green">
-            Refresh Access Token 
-          </v-btn>
+      <div v-if="access_token">
+        <v-card
+          elevation="2"
+          outlined
+          class="pa-2 pink lighten-5 my-5"
+        >
+          <v-card-title class="headline">
+            Access Token
+          </v-card-title>
+          <v-card-text>{{this.access_token}} </v-card-text>
+        </v-card>
+        <v-card
+          elevation="2"
+          outlined
+          class="pa-2 cyan lighten-5 my-5 "
+        >
+          <v-card-title class="headline">
+            Refresh Token
+          </v-card-title>
+          <v-card-text class="v-card-text">{{this.refresh_token}}</v-card-text>
       </v-card>
-
+      <v-btn @click="refreshAccessToken" class="green my-3">
+        Refresh Access Token 
+      </v-btn>
+    </div>
   </v-container>
 </template>
 
@@ -53,13 +70,13 @@ export default {
       const params = this.$_getHashParams();
       if (Object.entries(params).length !== 0) {
         if ("access_token" in params && "refresh_token" in params) {
-          this.$store.state.access_token = params.access_token;
-          this.$store.state.refresh_token = params.refresh_token;
+          this.$store.dispatch('setAccessToken', params.access_token);
+          this.$store.dispatch('setRefreshToken', params.refresh_token);
           this.initAccessToken();
         } else if ("error" in params) {
           this.error = params.error;
         } else {
-          this.error = "Missing access or refresh token";
+          this.error = "Missing access and/or refresh token";
         }
       }
     },
@@ -82,7 +99,6 @@ export default {
         console.log("verifier avalible");
       } else {
         this.error = '';
-        this.$store.state.access_token, this.$store.state.refresh_token = '';
         this.$_checkParams();
       }
     },

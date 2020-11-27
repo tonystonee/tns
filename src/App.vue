@@ -3,21 +3,21 @@
     <action-bar> </action-bar>
 
     <v-main>
-      <HelloWorld />
+      <Home />
     </v-main>
   </v-app>
 </template>
 
 <script>
 import ActionBar from "./components/ActionBar";
-import HelloWorld from "./components/HelloWorld";
+import Home from "./views/Home";
 
 export default {
   name: "App",
 
   components: {
     ActionBar,
-    HelloWorld
+    Home
   },
 
   data: () => ({

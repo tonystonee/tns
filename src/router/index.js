@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
-
+console.log('ruo')
 const routes = [
   {
     path: "/",

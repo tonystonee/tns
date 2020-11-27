@@ -1,7 +1,9 @@
 <template>
   <v-app-bar app dark class="actionBar">
     <div class="d-flex align-center">
-      <h1>Thots and Shots</h1>
+      <h1>
+        <router-link :to="{ name: 'home'}">Thots and Shots</router-link>
+      </h1>
     </div>
 
     <v-spacer></v-spacer>
