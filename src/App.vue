@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <action-bar> </action-bar>
-    <v-main>
+    <v-main class="grey darken-4">
       <v-container fluid height="100%">
         <v-alert type="error" v-if="error">
           {{error}}
@@ -39,7 +39,6 @@
 <script>
 import ActionBar from "./components/ActionBar";
 import Debug from './components/Debug';
-import axios from 'axios';
 import { mapGetters } from 'vuex';
 export default {
   name: "App",
@@ -118,21 +117,6 @@ export default {
         this.error = '';
         this.$_checkParams();
       }
-    },
-    async refreshAccessToken() {
-      let pkg;
-      try {
-        pkg = await axios.get(this.refresh_uri, {
-          params: {
-            refresh_token: this.refresh_token
-          }
-        });
-      } catch(xhr) {
-        this.error = xhr;
-        return;
-      }
-      const access_token = pkg.data.access_token;
-      this.$store.dispatch('setAccessToken', access_token);
     },
   },
   mounted() {

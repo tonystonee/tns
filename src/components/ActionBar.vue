@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app dark class="actionBar pink accent-2 white--text">
+  <v-app-bar app dark class="actionBar">
     <div class="top">
     </div>
     <div class="d-flex align-center">

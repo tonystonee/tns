@@ -3,7 +3,7 @@
         <v-card
             elevation="2"
             outlined
-            class="pa-2 pink lighten-5 my-5 rounded-lg"
+            class="pa-2 pink darken -5 my-5 rounded-lg"
         >
             <v-card-title class="headline">
             Access Token
@@ -15,7 +15,7 @@
         <v-card
             elevation="2"
             outlined
-            class="pa-2 cyan lighten-5 my-5 rounded-lg"
+            class="pa-2 cyan dearken-5 my-5 rounded-lg"
         >
             <v-card-title class="headline">
             Refresh Token
@@ -30,7 +30,7 @@
         <v-card
             elevation="2"
             outlined
-            class="pa-2 yellow lighten-5 my-5 rounded-lg"
+            class="pa-2 yellow darken-5 my-5 rounded-lg"
         >
             <v-card-title class="headline">
             User
