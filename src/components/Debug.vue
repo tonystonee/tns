@@ -24,6 +24,9 @@
             <v-card-text class="v-card-text subtitle-2">{{this.refresh_token}}</v-card-text>
             </v-sheet>
         </v-card>
+        <v-btn @click="refreshAccessToken" class="pink accent-2 white--text">
+        Refresh Access Token 
+        </v-btn>
         <v-card
             elevation="2"
             outlined
@@ -40,19 +43,41 @@
             </v-card-text>
             </v-sheet>
         </v-card>
-        <v-btn @click="refreshAccessToken" class="pink accent-2 white--text">
-        Refresh Access Token 
-        </v-btn>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+import { mapState } from 'vuex';
 export default {
     name: 'DebugModule',
     props: {
         access_token: String,
         refresh_token: String,
         user: Object,
+    },
+    computed: mapState([
+        // map this.count to store.state.count
+        'endpoint',
+    ]),
+    methods: {
+        async refreshAccessToken() {
+            let pkg;
+            try {
+                pkg = await axios.get(`${this.endpoint}/refresh_token`, {
+                    params: {
+                        refresh_token: this.refresh_token
+                    }
+                });
+            } catch(xhr) {
+                console.log(xhr)
+                this.error = xhr;
+                return;
+            }
+            const access_token = pkg.data.access_token;
+            console.log(access_token)
+            this.$store.dispatch('setAccessToken', access_token);
+        },
     }
 }
 </script>

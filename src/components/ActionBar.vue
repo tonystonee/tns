@@ -3,7 +3,7 @@
     <div class="top">
     </div>
     <div class="d-flex align-center">
-      <router-link :to="{ name: 'home'}">
+      <router-link :to="{ name: 'Home'}">
         <h1>Thots and Shots</h1>
       </router-link>
     </div>
@@ -12,7 +12,6 @@
 
     <v-btn
       :to="{ name: 'MyPlaylists'}"
-      target="_blank"
       text
       v-if="this.$store.state.user"
     >

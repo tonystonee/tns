@@ -6,12 +6,20 @@
         <v-alert type="error" v-if="error">
           {{error}}
         </v-alert>
-        <debug 
-        :user="user" 
-        :access_token="access_token"
-        :refresh_token="refresh_token"
+
+        <div
         v-if="access_token">
-        </debug>
+          <transition>
+            <keep-alive>
+              <router-view></router-view>
+            </keep-alive>
+          </transition>
+          <debug 
+          :user="user" 
+          :access_token="access_token"
+          :refresh_token="refresh_token">
+          </debug>
+        </div>
         <v-btn
           v-if="!access_token"
           elevation="3"
