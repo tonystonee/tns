@@ -8,6 +8,8 @@ export default new Vuex.Store({
     access_token: "",
     endpoint: 'http://localhost:8888',
     refresh_token: "",
+    spotifyAPI: null,
+    user: null,
   },
   getters: {
     access_token(state) {
@@ -18,6 +20,12 @@ export default new Vuex.Store({
     },
     refresh_token(state) {
       return state.refresh_token;
+    },
+    spotifyAPI(state) {
+      return state.spotifyAPI;
+    },
+    user(state) {
+      return state.user;
     }
   },
   mutations: {
@@ -26,6 +34,12 @@ export default new Vuex.Store({
     },
     setRefreshToken (state, token) {
       state.refresh_token = token;
+    },
+    setSpotifyAPI (state, spotifyAPI) {
+      state.spotifyAPI = spotifyAPI;
+    },
+    setUser (state, user) {
+      state.user = user;
     }
   },
   actions: {
@@ -34,6 +48,12 @@ export default new Vuex.Store({
     },
     setRefreshToken (context, token) {
       context.commit('setRefreshToken', token);
+    },
+    setSpotifyAPI (context, spotifyAPI) {
+      context.commit('setSpotifyAPI', spotifyAPI);
+    },
+    setUser (context, user) {
+      context.commit('setUser', user);
     }
   },
   modules: {}

@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-
+import MyPlaylists from  "../views/MyPlaylists.vue";
 Vue.use(VueRouter);
 console.log('ruo')
 const routes = [
@@ -9,6 +9,11 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home
+  },
+  {
+    path: "/me",
+    name: "MyPlaylists",
+    component: MyPlaylists
   },
 ];
 
