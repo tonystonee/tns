@@ -1,8 +1,7 @@
 <template>
   <v-app>
-    <action-bar> </action-bar>
-    <v-main class="grey darken-4">
-      <v-container fluid height="100%">
+    <nav-drawer></nav-drawer>
+    <v-main fluid class="grey darken-4 pa-0">
         <v-alert type="error" v-if="error">
           {{error}}
         </v-alert>
@@ -31,13 +30,13 @@
         >
           Sign in with Spotify
         </v-btn>
-      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import ActionBar from "./components/ActionBar";
+// import ActionBar from "./components/ActionBar";
+import NavDrawer from './components/NavDrawer';
 import Debug from './components/Debug';
 import { mapGetters } from 'vuex';
 export default {
@@ -46,8 +45,9 @@ export default {
     error: ""
   }),
   components: {
-    ActionBar, 
+    // ActionBar, 
     Debug,
+    NavDrawer
   },
   computed: {
     ...mapGetters([
