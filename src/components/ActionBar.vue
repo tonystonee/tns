@@ -28,8 +28,12 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang="scss">
+.actionBar {
+  h1 {
+    font-family: 'Montserrat', sans-serif;  
+  }
+}
 .v-application a {
     color: white!important;
     text-decoration: none;

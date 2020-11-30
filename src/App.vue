@@ -24,3 +24,10 @@ export default {
   })
 };
 </script>
+
+<style>
+  .v-btn{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+  }
+</style>
