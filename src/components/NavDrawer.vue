@@ -1,23 +1,21 @@
 <template>
     <div>
         <v-navigation-drawer
-            v-if="nav"
             class="nav-drawer lighten-5 "
-            :class="navColor"
             v-model="drawer"
             fixed
             clipped
             width="230"
+            hide-overlay
             app
         >
-            <v-list dense>
-                <v-app-bar flat :color="navColor" class="darken-2 hidden-lg-and-up title-tile">
+            <v-list dense class="pa-0">
+                <v-app-bar flat  class="darken-2 hidden-lg-and-up title-tile">
                     <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="mx-1"></v-app-bar-nav-icon>
-                    <v-icon class="mx-0" :color="iconColor">fas fa-play-circle</v-icon>
+                    <v-icon class="mx-0">fas fa-play-circle</v-icon>
                     <v-toolbar-title class="title ml-1 mr-5 align-center ">
-                        <router-link :to="{name: 'home'}" :class="textColor">DayOneBros &nbsp;</router-link>
+                        <router-link :to="{name: 'Home'}" >Thots n Shots &nbsp;</router-link>
                     </v-toolbar-title>
-                    <v-divider></v-divider>
                 </v-app-bar>
             <v-list-item-group
                 v-model="selectedItem"
@@ -27,9 +25,10 @@
             
                 v-for="(item, i) in items"
                 :key="i"
+                :to="`/category/${item.id}`"
                 >
-                <v-list-item-content>
-                    <v-list-item-title v-text="item.text"></v-list-item-title>
+                <v-list-item-content >
+                    <v-list-item-title v-text="item.name"></v-list-item-title>
                 </v-list-item-content>
                 </v-list-item>
             </v-list-item-group>
@@ -37,7 +36,6 @@
         </v-navigation-drawer>
 
         <v-app-bar
-            :color="navColor"
             class="darken-2"
             dense
             flat
@@ -45,12 +43,14 @@
             clipped-left
             app
         >
-            <v-app-bar-nav-icon v-if="nav" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-            <v-icon class="ml-2 mr-0 navicon" :color="iconColor">fas fa-play-circle</v-icon>
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+            <v-icon class="ml-2 mr-0 navicon">fas fa-play-circle</v-icon>
             <v-toolbar-title class="title ml-2 mr-5 align-center ">
-                <router-link :to="{name: 'home'}" :class="textColor">DayOneBros &nbsp;</router-link>
-                <span v-if="category" :class="textColor" class="subheading">{{category}}</span>
+                <router-link :to="{name: 'Home'}" >Thots n Shots &nbsp;</router-link>
+                <span v-if="category" class="subheading">{{category}}</span>
             </v-toolbar-title>
+            <v-spacer></v-spacer>
+            <span class="mr-2" v-if="this.$store.state.user">{{this.$store.state.user.display_name}}</span>
         </v-app-bar>
     </div>
 </template>
@@ -66,51 +66,29 @@
         data: () => ({
             selectedItem: 1,
             drawer: null,
-            category: null,
-            items: [
-                { icon: 'trending_up', text: 'News', slug: 'news' },
-                { icon: 'fas fa-laugh-squint', text: 'Comedy', slug: 'comedy' },
-                { icon: 'fas fa-football-ball', text: 'Sports', slug: 'sports' },
-                { icon: 'drive_eta', text: 'Auto', slug: 'auto' },
-                { icon: 'audiotrack', text: 'Music', slug: 'music' },
-                { icon: 'fas fa-film', text: 'Film and Animation', slug: 'film-and-animation' },
-                { icon: 'videogame_asset', text: 'Gaming', slug: 'gaming' },
-                { icon: 'pets', text: 'Pets', slug: 'pets' },
-                { icon: 'fas fa-flask', text: 'Science', slug: 'science' },
-                { icon: 'fas fa-graduation-cap', text: 'Education', slug: 'education' },
-            ],
+            items: [],
         }), 
-        
-        computed:{
-            nav(){
-                return !(this.$route.name == "terms" || this.$route.name == "copyright" ||
-                this.$route.name == "privacy");
-            },
-            isHome(){
-                return this.$route.name == "home";
-            },
-            textColor(){
-                if(this.$route.name == "home"){
-                    return 'black--text';
-                } else{
-                    return 'white--text';
+        methods: {
+            getCategories: async function() {
+                let data;
+                try {
+                    data = await this.$store.state.spotifyAPI.getCategories();
+                } catch(xhr) {
+                    console.error(xhr)
+                    return;
                 }
-            },
-            iconColor(){
-                if(this.$route.name == "home"){
-                    return 'red';
-                } else{
-                    return 'white';
-                }
-            },
-            navColor(){
-                if(this.$route.name == "home"){
-                    return 'white';
-                } else{
-                    return 'barColor';
-                }
+                console.log(data)
+                this.items = data.categories.items.map(category => {
+                    return {
+                        id: category.id,
+                        name: category.name
+                    }
+                });
             },
         },
+        mounted() {
+            this.getCategories();
+        }
     };
 </script>
 

@@ -46,7 +46,7 @@ export default {
     name: 'Playlists',
     props: {
         'playlists': {
-            type: Object,
+            type: Array,
             required: true
         }
     }

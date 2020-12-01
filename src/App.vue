@@ -1,13 +1,12 @@
 <template>
   <v-app>
-    <nav-drawer></nav-drawer>
-    <v-main fluid class="grey darken-4 pa-0">
+    <v-main class="grey darken-4 pa-0">
         <v-alert type="error" v-if="error">
           {{error}}
         </v-alert>
-
         <div
         v-if="access_token">
+        <nav-drawer></nav-drawer>
           <transition>
             <keep-alive>
               <router-view></router-view>
