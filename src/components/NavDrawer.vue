@@ -3,10 +3,9 @@
         <v-navigation-drawer
             class="nav-drawer lighten-5 "
             v-model="drawer"
-            fixed
             clipped
+            fixed="false"
             width="230"
-            hide-overlay
             app
         >
             <v-list dense class="pa-0">
@@ -14,7 +13,7 @@
                     <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="mx-1"></v-app-bar-nav-icon>
                     <v-img
                         class="mx-2"
-                        src="https://i.imgur.com/qgGY4tB.png"
+                        src="@/assets/logo.png"
                         max-height="40"
                         max-width="40"
                         contain
@@ -43,9 +42,6 @@
 
         <v-app-bar
             class="darken-2"
-            dense
-            flat
-            fixed
             clipped-left
             app
         >
