@@ -12,7 +12,13 @@
             <v-list dense class="pa-0">
                 <v-app-bar flat  class="darken-2 hidden-lg-and-up title-tile">
                     <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="mx-1"></v-app-bar-nav-icon>
-                    <v-icon class="mx-0">fas fa-play-circle</v-icon>
+                    <v-img
+                        class="mx-2"
+                        src="https://i.imgur.com/qgGY4tB.png"
+                        max-height="40"
+                        max-width="40"
+                        contain
+                    ></v-img>
                     <v-toolbar-title class="title ml-1 mr-5 align-center ">
                         <router-link :to="{name: 'Home'}" >Thots n Shots &nbsp;</router-link>
                     </v-toolbar-title>
@@ -44,7 +50,13 @@
             app
         >
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-            <v-icon class="ml-2 mr-0 navicon">fas fa-play-circle</v-icon>
+            <v-img
+                class="mx-2"
+                src="@/assets/logo.png"
+                max-height="40"
+                max-width="40"
+                contain
+            ></v-img>
             <v-toolbar-title class="title ml-2 mr-5 align-center ">
                 <router-link :to="{name: 'Home'}" >Thots n Shots &nbsp;</router-link>
                 <span v-if="category" class="subheading">{{category}}</span>
