@@ -142,7 +142,7 @@ export default {
     },
   },
   mounted() {
-    // this.initApp();
+    this.initApp();
   }
 };
 </script>
