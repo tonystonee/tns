@@ -1,73 +1,34 @@
 <template>
   <v-app>
-    <v-app-bar app elevation="0" rounded outlined>
+    <v-app-bar class="white" app clipped-left elevation="0" rounded outlined >
       <v-container>
-        <v-img
-          src="@/assets/logo.png"
-          max-height="40"
-          max-width="40"
-          contain
-        >
-        </v-img>
+        <v-row>
+          <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+          <v-img
+            src="@/assets/logo.png"
+            max-height="40"
+            max-width="40"
+            contain
+          >
+          </v-img>
+        </v-row>
       </v-container>
     </v-app-bar>
 
-    <v-main class="grey lighten-3">
+    <v-navigation-drawer v-model="drawer" app class="hidden-md-and-up">
+      <categories></categories>
+    </v-navigation-drawer>
+
+    <v-main class="main grey lighten-3" :class="{'px-5': $vuetify.breakpoint.smAndDown}" >
       <v-container>
         <v-row>
           <v-col cols="3" class="hidden-sm-and-down">
-            <v-card rounded elevation="1">
-                <v-list
-                  dense
-                  class="pa-0"
-                >
-                  <v-list-item-group
-                    v-model="item"
-                    color="pink"
-                  >
-                    <v-list-item
-                      v-for="(item, i) in items"
-                      :key="i"
-                    >
-                      <v-list-item-icon>
-                        <v-icon v-text="item.icon"></v-icon>
-                      </v-list-item-icon>
-
-                      <v-list-item-content>
-                        <v-list-item-title v-text="item.text"></v-list-item-title>
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-list-item-group>
-                </v-list>
+            <v-card rounded elevation="1" class="side-nav">
+              <categories></categories>
             </v-card>
           </v-col>
-          <v-col cols="12" md="8" class="pa-0">
-            <v-row>
-                <v-col
-                v-for="(item, i) in 20"
-                :key="i"
-                cols="6"
-                sm="4"
-                md="4"
-                lg="3"
-                >
-                <v-item>
-                    <v-sheet>
-                      <v-card
-                          class="playlist"
-                          rounded 
-                      >
-                          <v-img    
-                          src="https://mosaic.scdn.co/300/ab67616d0000b273175c577a61aa13d4fb4b6534ab67616d0000b273908afd2dae7320208da889fdab67616d0000b273e89541ec125fcc0792749fddab67616d0000b273ee0f38410382a255e4fb15f4"
-                          >
-                          </v-img>
-                          <v-card-title class="playlist_name pa-1">I miss the person tou porteayed to me</v-card-title>
-                          <v-card-subtitle class="pa-1">anthony dionise</v-card-subtitle>
-                      </v-card>
-                    </v-sheet>
-                </v-item>
-                </v-col>
-            </v-row>
+          <v-col cols="12" md="8" class="py-0">
+            <router-view></router-view>
           </v-col>
         </v-row>
       </v-container>
@@ -76,6 +37,7 @@
 </template>
 
 <script>
+import Categories from "./components/Categories";
 // import ActionBar from "./components/ActionBar";
 // import NavDrawer from './components/NavDrawer';
 // import Debug from './components/Debug';
@@ -83,23 +45,12 @@
 export default {
   name: "App",
   data: () => ({
-      item: 0,
-      items: [
-        { text: 'My Files', icon: 'mdi-folder' },
-        { text: 'Shared with me', icon: 'mdi-account-multiple' },
-        { text: 'Starred', icon: 'mdi-star' },
-        { text: 'Recent', icon: 'mdi-history' },
-        { text: 'Offline', icon: 'mdi-check-circle' },
-        { text: 'Uploads', icon: 'mdi-upload' },
-        { text: 'Backups', icon: 'mdi-cloud-upload' },
-      ],
-    // error: ""
+      drawer: false,
   }),
-  // components: {
-  //   // ActionBar, 
-  //   Debug,
-  //   NavDrawer
-  // },
+  components: {
+    Categories,
+    // Debug,
+  },
   // computed: {
   //   ...mapGetters([
   //     'access_token',
@@ -177,6 +128,9 @@ export default {
 </script>
 
 <style>
+  .main{
+    padding-left:0 !important
+  }
   .v-btn{
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
