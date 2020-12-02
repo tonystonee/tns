@@ -19,6 +19,7 @@
       <categories></categories>
     </v-navigation-drawer>
 
+    <!-- Page -->
     <v-main class="main grey lighten-3" :class="{'px-5': $vuetify.breakpoint.smAndDown}" >
       <v-container>
         <v-row>
