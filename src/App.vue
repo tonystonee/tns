@@ -118,5 +118,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  .main_container{
+    max-height: 100%;
+  }
 </style>

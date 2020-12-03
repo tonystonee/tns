@@ -1,6 +1,7 @@
 <template>
-    <v-container class="player">
+    <v-container class="player py-0">
         <v-row class="align-center flex-column">  
+            <h2 class="pb-3">Now Playing</h2>
             <v-card>
                 <v-img max-width="500" src="https://i.scdn.co/image/ab67616d0000b273280689ecc5e4b2038bb5e4bd"></v-img>
             </v-card>
@@ -23,12 +24,16 @@
 
 <script>
 export default {
-    
+    data() {
+        return {
+            alert: false,
+        }
+    }
 }
 </script>
 <style lang="scss">
     .player {
-        h1{
+        h1, h2{
             font-family: 'Montserrat', sans-serif;
         }
         .v-btn{
