@@ -1,7 +1,11 @@
 <template>
     <v-container class="player py-0">
         <v-row class="align-center flex-column">  
-            <h2 class="pb-3">Now Playing</h2>
+            <h2 class="px-0">Now Playing</h2>
+            <v-row class="ma-0 pa-0">
+                <p class="user caption pb-3 pr-1 my-0 grey--text text--lighten-1">as Jimmy Netrod </p>
+                <!-- <v-img src="@/assets/spotify_favicon.png" max-width="10" contain class="align-center"></v-img> -->
+            </v-row>
             <v-card>
                 <v-img max-width="500" src="https://i.scdn.co/image/ab67616d0000b273280689ecc5e4b2038bb5e4bd"></v-img>
             </v-card>

@@ -1,11 +1,16 @@
 <template>
   <v-app>
-      <v-container  v-if="logged_in" fluid fill-height class="main_container align-start grey lighten-4" >
+      <v-container  v-if="logged_in" fluid fill-height class="main_container align-start" >
         <!-- <player></player> -->
         <demo-page></demo-page>
         <!-- <debug></debug> -->
       </v-container>
-    <loading-sheet v-else></loading-sheet>
+      <loading-sheet v-else></loading-sheet>
+      <v-footer class="black py-0 my-0">
+        <v-container class="py-0 my-0 justify-center">
+            <p class="caption pa-0 ma-0">Powered by Spotify</p>
+        </v-container>
+      </v-footer>
   </v-app>
 </template>
 
