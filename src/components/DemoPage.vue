@@ -1,16 +1,22 @@
 <template>
-    <v-container >
+    <v-container class="player">
         <v-row class="align-center flex-column">  
             <v-card>
                 <v-img max-width="500" src="https://i.scdn.co/image/ab67616d0000b273280689ecc5e4b2038bb5e4bd"></v-img>
             </v-card>
-            <h1>ball w/o you, baby girl 🤫</h1>
-            <p class="subtitle">21 Savage</p>
+            <v-progress-linear
+            class="my-4"
+            indeterminate
+            color="purple accent-3"
+            rounded
+            ></v-progress-linear>
+            <h1 class="title">ball w/o you, baby girl 🤫</h1>
+            <p class="subtitle grey--text text--darken-3">21 Savage</p>
         </v-row>
         <v-row class="mt-5 justify-space-around">
-            <v-btn large color="primary">Start</v-btn>
-            <v-btn large color="red" class="white--text">Pause</v-btn>
-            <v-btn large color="pink" class="white--text">Next</v-btn>
+            <v-btn large color="purple" class="white--text">Start</v-btn>
+            <v-btn large color="pink" class="white--text">Pause</v-btn>
+            <v-btn large color="light-blue" class="white--text">Next</v-btn>
         </v-row>
     </v-container>
 </template>
@@ -20,3 +26,13 @@ export default {
     
 }
 </script>
+<style lang="scss">
+    .player {
+        h1{
+            font-family: 'Montserrat', sans-serif;
+        }
+        .v-btn{
+            font-family: 'Raleway', sans-serif;
+        }
+    }
+</style>

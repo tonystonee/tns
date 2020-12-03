@@ -9,7 +9,6 @@
             <v-btn @click="next" color="pink" class="white--text">Next</v-btn>
         </v-row>
         <v-row class="justify-center" v-else>
-
             <v-dialog
             v-model="dialog"
             persistent
@@ -21,7 +20,6 @@
                     </v-card-title>
                     <v-card-text>Try again when a device is playing Spotify!</v-card-text>
                     <v-card-actions class="justify-center">
-
                     <v-btn
                         color="red"
                         class="white--text"
