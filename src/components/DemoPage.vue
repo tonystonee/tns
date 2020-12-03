@@ -12,12 +12,12 @@
             rounded
             ></v-progress-linear>
             <h1 class="title">ball w/o you, baby girl 🤫</h1>
-            <p class="subtitle grey--text text--darken-3">21 Savage</p>
+            <p class="subtitle grey--text text--lighten-1">21 Savage</p>
         </v-row>
         <v-row class="mt-5 justify-space-around">
-            <v-btn large color="purple" class="white--text">Start</v-btn>
-            <v-btn large color="pink" class="white--text">Pause</v-btn>
-            <v-btn large color="light-blue" class="white--text">Next</v-btn>
+            <v-btn large color="purple" class="white--text  ">Start</v-btn>
+            <v-btn large color="purple" class="white--text">Pause</v-btn>
+            <v-btn large color="purple" class="white--text">Next</v-btn>
         </v-row>
     </v-container>
 </template>

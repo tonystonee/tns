@@ -120,5 +120,7 @@ export default {
 <style lang="scss" scoped>
   .main_container{
     max-height: 100%;
+background: rgb(0,0,0);
+background: linear-gradient(0deg, rgba(0,0,0,1) 47%, rgba(30,0,112,1) 100%);
   }
 </style>
