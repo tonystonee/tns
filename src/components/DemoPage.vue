@@ -33,8 +33,12 @@ export default {
 </script>
 <style lang="scss">
     .player {
-        h1, h2{
+        h1{
             font-family: 'Montserrat', sans-serif;
+        }
+        h2{
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
         }
         .v-btn{
             font-family: 'Raleway', sans-serif;
