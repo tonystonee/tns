@@ -35,6 +35,7 @@ export default {
     .player {
         h1{
             font-family: 'Montserrat', sans-serif;
+            font-weight: normal !important;
         }
         h2{
             font-family: 'Roboto', sans-serif;
