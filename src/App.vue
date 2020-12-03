@@ -1,7 +1,8 @@
 <template>
   <v-app>
       <v-container  v-if="logged_in" fluid fill-height class="main_container align-start grey lighten-4" >
-        <player></player>
+        <!-- <player></player> -->
+        <demo-page></demo-page>
         <!-- <debug></debug> -->
       </v-container>
     <loading-sheet v-else></loading-sheet>
@@ -9,8 +10,9 @@
 </template>
 
 <script>
+import DemoPage from './components/DemoPage';
 import LoadingSheet from './components/LoadingSheet';
-import Player from './components/Player';
+// import Player from './components/Player';
 // import Debug from './components/Debug';
 import { mapGetters } from 'vuex';
 export default {
@@ -20,7 +22,8 @@ export default {
   }),
   components: {
     // Debug,
-    Player,
+    DemoPage, 
+    // Player,
     LoadingSheet
   },
 
@@ -33,7 +36,8 @@ export default {
       'user',
     ]),
     logged_in() {
-      return !!this.user;
+      // return !!this.user;
+      return true;
     },
     login_uri() {
       return `${this.endpoint}/login`;
@@ -108,7 +112,7 @@ export default {
     },
   },
   mounted() {
-    this.initApp();
+    // this.initApp();
   }
 };
 </script>
