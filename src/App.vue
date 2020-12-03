@@ -1,51 +1,17 @@
 <template>
   <v-app>
-    <div v-if="logged_in">
-      <v-app-bar class="white" app clipped-left elevation="0" rounded outlined >
-        <v-container>
-          <v-row>
-            <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-            <v-img
-              src="@/assets/logo.png"
-              max-height="40"
-              max-width="40"
-              contain
-            >
-            </v-img>
-          </v-row>
-        </v-container>
-      </v-app-bar>
-
-      <v-navigation-drawer v-model="drawer" app class="hidden-md-and-up">
-        <categories></categories>
-      </v-navigation-drawer>
-
-      <!-- Page -->
-      <v-main class="main grey lighten-3" :class="{'px-5': $vuetify.breakpoint.smAndDown}" >
-        <v-container>
-          <v-row>
-            <v-col cols="3" class="hidden-sm-and-down" ref="leftColumn">
-              <v-card  elevation="10" class="side-nav" >
-                <categories></categories>
-              </v-card>
-            </v-col>
-            <v-col cols="12" md="8" class="py-0">
-              <router-view></router-view>
-            </v-col>
-          </v-row>
-        </v-container>
-        <debug></debug>
-      </v-main>
-    </div>
-
+      <v-container  v-if="logged_in" fluid fill-height class="main_container align-start grey lighten-4" >
+        <player></player>
+        <!-- <debug></debug> -->
+      </v-container>
     <loading-sheet v-else></loading-sheet>
   </v-app>
 </template>
 
 <script>
-import Categories from "./components/Categories";
 import LoadingSheet from './components/LoadingSheet';
-import Debug from './components/Debug';
+import Player from './components/Player';
+// import Debug from './components/Debug';
 import { mapGetters } from 'vuex';
 export default {
   name: "App",
@@ -53,8 +19,8 @@ export default {
       drawer: false,
   }),
   components: {
-    Categories,
-    Debug,
+    // Debug,
+    Player,
     LoadingSheet
   },
 
@@ -147,12 +113,6 @@ export default {
 };
 </script>
 
-<style lang="scss">
-  .main{
-    padding-left:0 !important
-  }
-  .v-btn{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-  }
+<style lang="scss" scoped>
+
 </style>
