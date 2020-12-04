@@ -9,13 +9,13 @@
                     <p class="user caption pb-3 pr-1 my-0 grey--text text--lighten-1">as {{username}} </p>
                 </v-row>
                 <v-card>
-                    <v-img max-width="500" :src="currentTrack.item.album.images[0].url"></v-img>
+                    <v-img max-width="500" :src="art"></v-img>
                 </v-card>
                 <v-progress-linear
                 class="my-4"
-                indeterminate
                 color="purple accent-3"
                 rounded
+                v-model="timeRemaining"
                 ></v-progress-linear>
                 <h1 class="title">{{currentTrack.item.name}}</h1>
                 <p class="subtitle grey--text text--lighten-1">{{currentTrack.item.artists[0].name}}</p>
@@ -55,11 +55,18 @@ export default {
         return {
             activeInterval: null,
             currentTrack: null,
-            tryAgain: false,
             deviceActive: false,
             timer: null,
+            timeRemaining: null,
+            timeStart: null,
+            tryAgain: false,
             // 60 seconds
             ms: 60000
+        }
+    },
+    computed:{
+        art() {
+            return this.currentTrack.item.album.images[0].url;
         }
     },
     components: {
@@ -67,12 +74,17 @@ export default {
     },
     methods: {
         async $_next() {
+            let current;
             try {
                 await this.spotifyAPI.skipToNext();
+                current = await this.spotifyAPI.getMyCurrentPlayingTrack();
             } catch(xhr) {
                 console.error(xhr);
                 return;
             }
+            this.currentTrack = current;
+            this.timeRemaining =  0;
+            this.timeStart = new Date().getTime();
         },
         async playback() {
             this.tryAgain = false;
@@ -85,27 +97,30 @@ export default {
             }
             if (current) {
                 this.currentTrack = current;
+                // reset timer
+                if(this.timer){
+                    clearInterval(this.timer) 
+                }
                 try {
                     await this.spotifyAPI.seek(0);
                 } catch(error) {
                     console.error(error)
                     return;
                 }
+
                 if (!current.is_playing) {
                     try {
-                        await this.$spotifyAPI.play();
+                        await this.spotifyAPI.play();
                     } catch(error) {
                         console.error(error)
                         return;
                     }
                 }
 
-                // reset timer
-                if(this.timer){
-                    clearInterval(this.timer) 
-                }
                 // ten seconds
                 this.timer = setInterval(() => this.$_next(), this.ms);
+                this.timeStart = new Date().getTime();
+                console.log('timeStart', this.timeStart)
                 this.active = true;
                 this.deviceActive = true;
                 console.log(this.currentTrack);
@@ -115,9 +130,15 @@ export default {
                 this.tryAgain = true;
                 return;
             }
-
         },
     },
+    mounted() {
+        setInterval(() => {
+            if (this.timer) {
+                this.timeRemaining = (new Date().getTime() - this.timeStart)/600;
+            }
+        }, 100);
+    }
 }
 </script>
 <style lang="scss">
