@@ -15,26 +15,21 @@
 import LoadingSheet from './components/LoadingSheet';
 import Player from './components/Player';
 // import Debug from './components/Debug';
-import { mapGetters } from 'vuex';
 export default {
   name: "App",
   data: () => ({
-      drawer: false,
+    access_token: "",
+    endpoint: 'http://localhost:8888',
+    refresh_token: "",
+    spotifyAPI: null,
+    user: null,
   }),
   components: {
     // Debug,
     Player,
     LoadingSheet
   },
-
   computed: {
-    ...mapGetters([
-      'access_token',
-      'endpoint',
-      'refresh_token',
-      'spotifyAPI',
-      'user',
-    ]),
     logged_in() {
       return !!this.user;
     },
@@ -48,8 +43,8 @@ export default {
   methods: {
     $_setTokens(params) {
       if ("access_token" in params && "refresh_token" in params) {
-        this.$store.dispatch('setAccessToken', params.access_token);
-        this.$store.dispatch('setRefreshToken', params.refresh_token);
+        this.access_token = params.access_token;
+        this.refresh_token = params.refresh_token;
         this.initApp();
       } else if ("error" in params) {
         console.error(params.error);
@@ -87,7 +82,7 @@ export default {
       const SpotifyWebApi = require('spotify-web-api-js');
       const spotifyAPI = new SpotifyWebApi();
       spotifyAPI.setAccessToken(access_token);
-      this.$store.dispatch('setSpotifyAPI', spotifyAPI);
+      this.spotifyAPI = spotifyAPI;
     },
     async $_setUser() {
       let user;
@@ -97,13 +92,13 @@ export default {
         console.log(xhr)
         return;
       }
-      this.$store.dispatch('setUser', user);
+      this.user = user;
     },
     initApp() {
       // check if logged in
-      if (this.$store.state.access_token && this.$store.state.refresh_token) {
+      if (this.access_token && this.refresh_token) {
         // declare spotify API and User Objects
-        this.$_initSpotifyAPI(this.$store.state.access_token);
+        this.$_initSpotifyAPI(this.access_token);
         this.$_setUser();
       } else {
         this.login();
@@ -111,7 +106,7 @@ export default {
     },
   },
   mounted() {
-    // this.initApp();
+    this.initApp();
   }
 };
 </script>
