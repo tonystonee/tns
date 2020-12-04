@@ -20,8 +20,6 @@
         </v-row>
         <v-row class="mt-5 justify-space-around">
             <v-btn large color="purple" class="white--text  ">Start</v-btn>
-            <v-btn large color="purple" class="white--text">Pause</v-btn>
-            <v-btn large color="purple" class="white--text">Next</v-btn>
         </v-row>
     </v-container>
 </template>

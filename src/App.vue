@@ -1,23 +1,19 @@
 <template>
   <v-app>
-      <v-container  v-if="logged_in" fluid fill-height class="main_container align-start" >
-        <!-- <player></player> -->
-        <demo-page></demo-page>
-        <!-- <debug></debug> -->
-      </v-container>
-      <loading-sheet v-else></loading-sheet>
-      <v-footer class="black py-0 my-0">
-        <v-container class="py-0 my-0 justify-center">
-            <p class="caption pa-0 ma-0">Powered by Spotify</p>
+      <v-main id="main">
+        <v-container  v-if="logged_in" fluid fill-height class="align-start" >
+          <player></player>
+          <!-- <debug></debug> -->
         </v-container>
-      </v-footer>
+        <loading-sheet v-else></loading-sheet>
+      </v-main>
   </v-app>
 </template>
 
 <script>
-import DemoPage from './components/DemoPage';
+// import DemoPage from './components/DemoPage';
 import LoadingSheet from './components/LoadingSheet';
-// import Player from './components/Player';
+import Player from './components/Player';
 // import Debug from './components/Debug';
 import { mapGetters } from 'vuex';
 export default {
@@ -27,8 +23,7 @@ export default {
   }),
   components: {
     // Debug,
-    DemoPage, 
-    // Player,
+    Player,
     LoadingSheet
   },
 
@@ -41,8 +36,7 @@ export default {
       'user',
     ]),
     logged_in() {
-      // return !!this.user;
-      return true;
+      return !!this.user;
     },
     login_uri() {
       return `${this.endpoint}/login`;
@@ -123,9 +117,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .main_container{
-    max-height: 100%;
-background: rgb(0,0,0);
-background: linear-gradient(0deg, rgba(0,0,0,1) 47%, rgba(30,0,112,1) 100%);
-  }
+  #main{
+      background: rgb(0,0,0);
+      background: linear-gradient(0deg, rgba(0,0,0,1) 47%, rgba(30,0,112,1) 100%);
+    }
 </style>
