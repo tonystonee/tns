@@ -2,7 +2,7 @@
   <v-app>
       <v-main id="main">
         <v-container  v-if="logged_in" fluid fill-height class="align-start" >
-          <player></player>
+          <player :spotifyAPI="spotifyAPI" :username="user.display_name"></player>
           <!-- <debug></debug> -->
         </v-container>
         <loading-sheet v-else></loading-sheet>
@@ -11,7 +11,6 @@
 </template>
 
 <script>
-// import DemoPage from './components/DemoPage';
 import LoadingSheet from './components/LoadingSheet';
 import Player from './components/Player';
 // import Debug from './components/Debug';
@@ -52,9 +51,8 @@ export default {
         console.error('Unknown Error')
       }
     },
-    login() {
+    login() { 
       const params = this.$_getHashParams();
-      
       // No tokens in query
       if (Object.entries(params).length === 0) {
         window.location.href = `${this.endpoint}/login`;
